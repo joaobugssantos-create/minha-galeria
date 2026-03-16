@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<ht<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futebol Total - Página Oficial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Futebol Total - Tela Fixa</title>
     <style>
-        /* ESTILO GERAL - RESET E FONTES */
+        /* ESTILO GERAL - TELA FIXA SEM ROLAGEM */
         * {
             margin: 0;
             padding: 0;
@@ -13,403 +14,326 @@
             font-family: 'Segoe UI', 'Arial', sans-serif;
         }
 
+        html, body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden; /* IMPEDE ROLAGEM */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
         body {
             background: linear-gradient(145deg, #0f3b1e 0%, #1a4d2a 100%);
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px;
+            padding: 15px;
         }
 
-        /* PÁGINA FIXA - CONTAINER PRINCIPAL COM LARGURA MÁXIMA */
+        /* PÁGINA FIXA - OCUPA TODA A TELA SEM ROLAGEM */
         .pagina-fixa {
             max-width: 1300px;
             width: 100%;
+            height: 95vh; /* ALTURA FIXA DA TELA */
+            max-height: 95vh;
             background-color: #ffffff;
             border-radius: 40px 40px 30px 30px;
-            overflow: hidden;
+            overflow: hidden; /* IMPEDE ROLAGEM INTERNA */
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             border: 3px solid #f5c542;
+            display: flex;
+            flex-direction: column;
         }
 
         /* ===== BARRA SUPERIOR ===== */
         .topo {
             background: linear-gradient(165deg, #0c3a1a 0%, #1f6e3a 100%);
-            padding: 18px 35px;
+            padding: 12px 25px;
             display: flex;
             align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            border-bottom: 6px solid #f5c542;
+            gap: 25px;
+            flex-wrap: nowrap;
+            border-bottom: 4px solid #f5c542;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            flex-shrink: 0; /* NÃO ENCOLHE */
         }
 
-        /* BARRA DE PESQUISA - CANTO SUPERIOR ESQUERDO */
+        /* BARRA DE PESQUISA */
         .pesquisa {
             display: flex;
             align-items: center;
             background: white;
             border-radius: 60px;
-            padding: 5px 20px;
-            width: 320px;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05), 0 6px 12px rgba(0,0,0,0.2);
+            padding: 3px 15px;
+            width: 260px;
+            flex-shrink: 0;
             border: 2px solid #f5c542;
-            transition: 0.3s;
-        }
-
-        .pesquisa:focus-within {
-            transform: scale(1.02);
-            border-color: #ffb347;
-            box-shadow: 0 0 0 4px rgba(245, 197, 66, 0.3);
         }
 
         .pesquisa input {
             border: none;
             outline: none;
-            padding: 14px 8px;
+            padding: 10px 5px;
             width: 100%;
-            font-size: 16px;
+            font-size: 15px;
             background: transparent;
-            color: #1a3f2c;
-            font-weight: 500;
-        }
-
-        .pesquisa input::placeholder {
-            color: #7a9c84;
-            font-weight: 400;
         }
 
         .pesquisa button {
             background: transparent;
             border: none;
             cursor: pointer;
-            font-size: 22px;
+            font-size: 20px;
             color: #1f6e3a;
-            transition: 0.2s;
-            padding: 0 5px;
         }
 
-        .pesquisa button:hover {
-            color: #f5c542;
-            transform: scale(1.2);
-        }
-
-        /* BOTÕES (TIME, PAÍSES, JOGADORES, TÍTULOS) - DENTRO DE QUADRADOS ESPAÇADOS */
+        /* BOTÕES EM QUADRADOS ESPAÇADOS */
         .menu-botoes {
             display: flex;
-            gap: 28px;
-            flex-wrap: wrap;
-            margin-left: 5px;
+            gap: 15px;
+            flex-wrap: nowrap;
+            flex: 1;
+            justify-content: flex-start;
         }
 
         .botao-quadrado {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
             color: white;
-            font-weight: 800;
-            font-size: 18px;
-            padding: 14px 18px;
-            border-radius: 18px;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 10px 12px;
+            border-radius: 15px;
             cursor: pointer;
-            transition: all 0.4s ease;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
-            border: 3px solid rgba(245, 197, 66, 0.8);
-            box-shadow: 0 8px 0 #0f3b1e, 0 10px 20px rgba(0,0,0,0.3);
-            min-width: 130px;
+            letter-spacing: 0.5px;
+            border: 2px solid rgba(245, 197, 66, 0.8);
+            box-shadow: 0 5px 0 #0f3b1e;
+            min-width: 100px;
             text-align: center;
-            display: inline-block;
-            line-height: 1.2;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .botao-quadrado:hover {
-            background: #f5c542;
-            color: #0c3a1a;
-            border-color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 12px 0 #0f3b1e, 0 18px 25px rgba(245, 197, 66, 0.5);
-        }
-
-        /* ===== SEÇÃO FOTO (CENTRO ESQUERDO) + TEXTO (ATÉ O FINAL DIREITO) ===== */
+        /* ===== SEÇÃO PRINCIPAL (FOTO + TEXTO) ===== */
         .secao-principal {
             display: flex;
-            padding: 55px 45px;
-            gap: 50px;
+            padding: 20px 25px;
+            gap: 25px;
             background: linear-gradient(120deg, #ffffff, #fafffa);
-            border-bottom: 4px solid #f5c542;
+            border-bottom: 3px solid #f5c542;
+            flex: 1; /* OCUPA ESPAÇO DISPONÍVEL */
+            min-height: 0; /* IMPORTANTE PARA FLEXBOX */
+            height: auto;
         }
 
         .foto-centro-esquerda {
             flex: 1;
             max-width: 48%;
-            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
 
         .foto-centro-esquerda img {
             width: 100%;
-            height: 400px;
+            height: 100%;
+            max-height: 280px;
             object-fit: cover;
-            border-radius: 30px;
-            box-shadow: 22px 22px 0 #1f6e3a, 0 25px 35px rgba(0,0,0,0.3);
-            border: 5px solid #f5c542;
-            transition: 0.4s;
-        }
-
-        .foto-centro-esquerda img:hover {
-            transform: scale(1.01);
-            box-shadow: 18px 18px 0 #f5c542, 0 30px 40px rgba(0,0,0,0.3);
+            border-radius: 25px;
+            box-shadow: 12px 12px 0 #1f6e3a;
+            border: 4px solid #f5c542;
         }
 
         .texto-lado-direito {
             flex: 1;
-            padding: 10px 10px 10px 30px;
+            padding: 5px 5px 5px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: rgba(31, 110, 58, 0.02);
-            border-radius: 40px;
-            border-right: 8px solid #f5c542;
+            height: 100%;
+            overflow: hidden; /* IMPEDE VAZAMENTO */
         }
 
         .texto-lado-direito h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             color: #0c3a1a;
-            margin-bottom: 25px;
-            border-left: 12px solid #f5c542;
-            padding-left: 30px;
+            margin-bottom: 10px;
+            border-left: 8px solid #f5c542;
+            padding-left: 15px;
             line-height: 1.2;
-            text-shadow: 3px 3px 0 rgba(245, 197, 66, 0.2);
-            font-weight: 800;
         }
 
         .texto-lado-direito p {
-            font-size: 1.25rem;
-            line-height: 1.9;
+            font-size: 1rem;
+            line-height: 1.4;
             color: #1e3a28;
             text-align: justify;
-            margin-bottom: 25px;
-            font-weight: 450;
-            padding-right: 15px;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* LIMITA LINHAS */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .frase-destaque {
             background: #0c3a1a;
             color: #f5c542;
-            padding: 22px 30px;
-            border-radius: 60px 60px 60px 10px;
-            font-size: 1.4rem;
-            font-weight: 700;
-            border: 3px solid #f5c542;
-            box-shadow: 10px 10px 0 #f5c542;
+            padding: 12px 18px;
+            border-radius: 40px 40px 40px 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid #f5c542;
+            box-shadow: 6px 6px 0 #f5c542;
             width: fit-content;
-            max-width: 90%;
+            max-width: 100%;
         }
 
-        /* ===== CARROSSEL DE 5 FOTOS PEQUENAS ===== */
+        /* ===== CARROSSEL DE 5 FOTOS ===== */
         .carrossel-container {
-            padding: 45px 35px 55px;
+            padding: 15px 25px;
             background: linear-gradient(180deg, #f0f9f0, #e5f0e5);
-            border-bottom: 3px solid #c0d6c0;
+            border-bottom: 2px solid #c0d6c0;
+            flex-shrink: 0;
         }
 
         .titulo-carrossel {
-            font-size: 2.3rem;
+            font-size: 1.3rem;
             color: #1a4d2a;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             text-align: center;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            background: linear-gradient(135deg, #0f3b1e, #f5c542);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            word-break: break-word;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .grade-carrossel {
             display: flex;
-            gap: 22px;
+            gap: 12px;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .card-carrossel {
             flex: 1;
-            min-width: 170px;
-            max-width: 210px;
-            border-radius: 35px 35px 25px 25px;
+            min-width: 0;
+            max-width: 180px;
+            border-radius: 20px 20px 15px 15px;
             overflow: hidden;
             background: #1f6e3a;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.35);
-            transition: 0.5s ease;
-            border: 4px solid #f5c542;
-            transform: scale(1);
-        }
-
-        .card-carrossel:hover {
-            transform: scale(1.1) rotate(1deg);
-            box-shadow: 0 25px 35px rgba(245, 197, 66, 0.6);
-            border-color: white;
+            border: 3px solid #f5c542;
         }
 
         .card-carrossel img {
             width: 100%;
-            height: 150px;
+            height: 100px;
             object-fit: cover;
-            display: block;
-            border-bottom: 4px solid #f5c542;
+            border-bottom: 3px solid #f5c542;
         }
 
         .legenda-carrossel {
             text-align: center;
-            padding: 16px 5px;
-            font-weight: 800;
+            padding: 8px 2px;
+            font-weight: 700;
             color: white;
             background: #1f6e3a;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* ===== RODAPÉ ===== */
         .rodape {
             background: #0a2f16;
             color: #f0f7ec;
-            padding: 40px 40px 25px;
-            border-top: 7px solid #f5c542;
+            padding: 15px 25px;
+            border-top: 4px solid #f5c542;
+            flex-shrink: 0;
         }
 
         .conteudo-rodape {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
+            flex-wrap: nowrap;
+            gap: 15px;
         }
 
         .logo-rodape h2 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             color: #f5c542;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-shadow: 3px 3px 0 #0a3a1a;
+            white-space: nowrap;
         }
 
         .links-rodape {
             display: flex;
-            gap: 35px;
-            flex-wrap: wrap;
+            gap: 15px;
+            flex-wrap: nowrap;
         }
 
         .links-rodape a {
             color: #d0e6d5;
             text-decoration: none;
-            font-size: 1.15rem;
-            font-weight: 600;
-            transition: 0.3s;
-            padding: 8px 0;
-            border-bottom: 3px solid transparent;
-        }
-
-        .links-rodape a:hover {
-            color: #f5c542;
-            border-bottom-color: #f5c542;
-            transform: translateY(-3px);
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         .redes-sociais {
             display: flex;
-            gap: 20px;
+            gap: 8px;
         }
 
         .icone-social {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 55px;
-            height: 55px;
+            width: 35px;
+            height: 35px;
             background: #1f6e3a;
             border-radius: 50%;
             color: white;
-            font-size: 2rem;
-            transition: 0.4s;
-            border: 3px solid #f5c542;
+            font-size: 1.2rem;
+            border: 2px solid #f5c542;
             text-decoration: none;
-            box-shadow: 0 5px 0 #0a2f16;
-        }
-
-        .icone-social:hover {
-            background: #f5c542;
-            color: #0a2f16;
-            transform: rotate(360deg) scale(1.1);
-            border-color: white;
-            box-shadow: 0 8px 0 #0a2f16;
+            flex-shrink: 0;
         }
 
         .direitos {
             text-align: center;
-            padding: 20px 0 5px;
-            border-top: 3px solid #1f6e3a;
-            font-size: 1.05rem;
-            color: #b8d9c2;
-        }
-
-        .direitos strong {
-            color: #f5c542;
-            font-size: 1.2rem;
+            padding: 8px 0 0;
+            border-top: 2px solid #1f6e3a;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .emblema {
-            margin-top: 10px;
-            font-size: 1.8rem;
-            filter: drop-shadow(0 3px 3px gold);
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 1rem;
         }
 
-        /* RESPONSIVIDADE - MANTER PÁGINA FIXA MAS ADAPTÁVEL */
-        @media (max-width: 1100px) {
-            .secao-principal {
-                flex-direction: column;
-            }
-            .foto-centro-esquerda {
-                max-width: 100%;
-            }
-            .topo {
-                justify-content: center;
-                gap: 25px;
-            }
-            .pesquisa {
-                width: 100%;
-            }
-            .menu-botoes {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .botao-quadrado {
-                font-size: 15px;
-                padding: 12px 12px;
-                min-width: 110px;
-            }
-            .texto-lado-direito h1 {
-                font-size: 2.3rem;
-            }
-            .pagina-fixa {
-                border-radius: 20px;
-            }
+        /* GARANTIA DE QUE NADA VASA */
+        .botao-quadrado,
+        .pesquisa,
+        .card-carrossel,
+        .links-rodape a {
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 <body>
-    <!-- PÁGINA FIXA - ÚNICA PÁGINA -->
+    <!-- PÁGINA FIXA SEM ROLAGEM -->
     <div class="pagina-fixa">
 
-        <!-- BARRA DE CIMA: PESQUISA + BOTÕES EM QUADRADOS ESPAÇADOS -->
+        <!-- BARRA SUPERIOR -->
         <header class="topo">
             <div class="pesquisa">
-                <input type="text" placeholder="Pesquisar times, jogadores...">
+                <input type="text" placeholder="Pesquisar...">
                 <button>🔍</button>
             </div>
             <div class="menu-botoes">
@@ -420,53 +344,53 @@
             </div>
         </header>
 
-        <!-- FOTO NO CENTRO ESQUERDO + TEXTO OCUPANDO ATÉ O CANTO DIREITO -->
+        <!-- FOTO CENTRO ESQUERDO + TEXTO -->
         <section class="secao-principal">
             <div class="foto-centro-esquerda">
-                <img src="https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jogador de futebol dominando a bola">
+                <img src="https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jogador de futebol">
             </div>
             <div class="texto-lado-direito">
                 <h1>O coração do futebol</h1>
                 <p>
-                    O futebol é a linguagem universal que dispensa tradução. Dos campos de várzea aos grandes estádios, a magia acontece quando a bola rola. Cada partida escreve uma história nova, cada jogador se torna herói, cada torcida vibra como uma só voz. O esporte mais amado do planeta pulsa em cada esquina, unindo culturas, raças e gerações em torno de uma paixão sem limites.
+                    O futebol é a linguagem universal que dispensa tradução. Dos campos de várzea aos grandes estádios, a magia acontece quando a bola rola. Cada partida escreve uma história nova, cada jogador se torna herói, cada torcida vibra como uma só voz.
                 </p>
                 <p>
-                    Seleções que marcaram época, craques que viraram lenda, títulos que ficaram na memória — tudo isso você encontra aqui. O futebol é emoção pura, é o gol no último minuto, é a defesa impossível, é a taça erguida sob chuva de papel picado.
+                    Seleções que marcaram época, craques que viraram lenda, títulos que ficaram na memória — tudo isso você encontra aqui. O futebol é emoção pura, é o gol no último minuto.
                 </p>
                 <div class="frase-destaque">
-                    ⚡ "Aqui se respira futebol 24 horas por dia" ⚡
+                    ⚡ "Aqui se respira futebol" ⚡
                 </div>
             </div>
         </section>
 
-        <!-- CARROSSEL DE 5 FOTOS PEQUENAS (ESQUERDA PARA DIREITA) -->
+        <!-- CARROSSEL 5 FOTOS -->
         <section class="carrossel-container">
-            <h3 class="titulo-carrossel">⚽ MOMENTOS INESQUECÍVEIS ⚽</h3>
+            <h3 class="titulo-carrossel">⚽ MOMENTOS ⚽</h3>
             <div class="grade-carrossel">
                 <div class="card-carrossel">
-                    <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bola no gramado">
-                    <div class="legenda-carrossel">BOLA EM AÇÃO</div>
+                    <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bola">
+                    <div class="legenda-carrossel">BOLA</div>
                 </div>
                 <div class="card-carrossel">
-                    <img src="https://images.pexels.com/photos/159106/arena-soccer-stadium-field-game-159106.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Estádio cheio">
-                    <div class="legenda-carrossel">ESTÁDIOS LOTADOS</div>
+                    <img src="https://images.pexels.com/photos/159106/arena-soccer-stadium-field-game-159106.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Estádio">
+                    <div class="legenda-carrossel">ESTÁDIO</div>
                 </div>
                 <div class="card-carrossel">
-                    <img src="https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Jogador comemorando gol">
-                    <div class="legenda-carrossel">COMEMORAÇÃO</div>
+                    <img src="https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Comemoração">
+                    <div class="legenda-carrossel">GOL</div>
                 </div>
                 <div class="card-carrossel">
-                    <img src="https://images.pexels.com/photos/47392/pexels-photo-47392.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Torcida vibrando">
-                    <div class="legenda-carrossel">TORCIDA FIEL</div>
+                    <img src="https://images.pexels.com/photos/47392/pexels-photo-47392.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Torcida">
+                    <div class="legenda-carrossel">TORCIDA</div>
                 </div>
                 <div class="card-carrossel">
-                    <img src="https://images.pexels.com/photos/358042/pexels-photo-358042.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Troféu e rede">
-                    <div class="legenda-carrossel">GLÓRIA ETERNA</div>
+                    <img src="https://images.pexels.com/photos/358042/pexels-photo-358042.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Troféu">
+                    <div class="legenda-carrossel">TÍTULO</div>
                 </div>
             </div>
         </section>
 
-        <!-- RODAPÉ DO SITE -->
+        <!-- RODAPÉ -->
         <footer class="rodape">
             <div class="conteudo-rodape">
                 <div class="logo-rodape">
@@ -477,18 +401,15 @@
                     <a href="#">Seleções</a>
                     <a href="#">Clubes</a>
                     <a href="#">Contato</a>
-                    <a href="#">Privacidade</a>
                 </div>
                 <div class="redes-sociais">
                     <a href="#" class="icone-social">📘</a>
                     <a href="#" class="icone-social">🐦</a>
                     <a href="#" class="icone-social">📷</a>
-                    <a href="#" class="icone-social">▶️</a>
                 </div>
             </div>
             <div class="direitos">
-                <p>&copy; 2025 <strong>Futebol Total</strong> - Todos os direitos garantidos. Uma página fixa dedicada à paixão nacional.</p>
-                <div class="emblema">⚽🏆🌍🇧🇷⚡</div>
+                &copy; 2025 <strong>Futebol Total</strong> - Tela fixa <span class="emblema">⚽</span>
             </div>
         </footer>
     </div>
