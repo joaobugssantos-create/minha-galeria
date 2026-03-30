@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Galeria FC Barcelona</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria do Barcelona</title>
     <style>
         * {
             margin: 0;
@@ -12,128 +12,120 @@
         }
 
         body {
-            background: linear-gradient(135deg, #a50044 0%, #004d98 100%);
-            font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #181733 0%, #002856 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
-        /* CONTAINER PRINCIPAL DA GALERIA */
-        .galeria-container {
-            max-width: 1100px;
+        .container {
+            max-width: 1200px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 30px;
-            padding: 35px 30px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            border: 2px solid #ffd700;
-        }
-
-        /* TÍTULO DA GALERIA */
-        .galeria-titulo {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .galeria-titulo h1 {
-            font-size: 2.5rem;
-            color: #a50044;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .galeria-titulo h1 span {
-            font-size: 2.8rem;
-        }
-
-        .galeria-titulo p {
-            color: #004d98;
-            font-size: 1.1rem;
-            margin-top: 8px;
-            font-weight: 500;
-        }
-
-        .escudo {
-            width: 50px;
-            height: 50px;
-            background: #a50044;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffd700;
-            font-size: 1.8rem;
-        }
-
-        /* GRADE DA GALERIA - 2 LINHAS COM 3 COLUNAS */
-        .galeria-grade {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 20px;
-        }
-
-        /* ESTILO DE CADA ITEM DA GALERIA */
-        .galeria-item {
-            background: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-            cursor: pointer;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             position: relative;
-            border: 2px solid #ffd700;
         }
 
-        .galeria-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
-            border-color: #a50044;
-        }
-
-        /* IMAGEM DENTRO DO ITEM */
-        .galeria-item img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
+        h1::after {
+            content: '';
             display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FFD700, #A50044, #004D98, transparent);
+            margin: 10px auto;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background-color: #004D98;
+            border: 2px solid transparent;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+            border-color: #FFD700;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .galeria-item:hover img {
-            transform: scale(1.05);
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
 
-        /* LEGENDA DA IMAGEM */
-        .legenda {
-            padding: 15px 12px;
-            background: linear-gradient(135deg, #fff, #f8f9fa);
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 40, 86, 0.9), transparent);
+            color: #FFD700;
+            padding: 20px 10px 10px;
             text-align: center;
-            border-top: 3px solid #ffd700;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 2px black;
         }
 
-        .legenda h3 {
-            font-size: 1.2rem;
-            color: #a50044;
-            margin-bottom: 5px;
-            font-weight: 700;
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
         }
 
-        .legenda p {
-            font-size: 0.85rem;
-            color: #004d98;
-            font-weight: 500;
+        .player-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #FFD700;
+            color: #004D98;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            border: 2px solid #A50044;
         }
 
-        /* OVERLAY DE DESTAQUE AO CLICAR (MODAL) */
+        /* Modal para ampliar imagem */
         .modal {
             display: none;
             position: fixed;
@@ -141,250 +133,144 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             cursor: pointer;
         }
 
-        .modal-conteudo {
-            max-width: 80%;
-            max-height: 80%;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
-            border: 3px solid #ffd700;
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+            border: 3px solid #FFD700;
         }
 
-        .modal-conteudo img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .modal-legenda {
-            padding: 20px;
-            background: linear-gradient(135deg, #a50044, #004d98);
-            text-align: center;
-        }
-
-        .modal-legenda h3 {
-            font-size: 1.6rem;
-            color: #ffd700;
-            margin-bottom: 8px;
-        }
-
-        .modal-legenda p {
-            color: white;
-            font-size: 1rem;
-        }
-
-        .fechar-modal {
+        .modal-close {
             position: absolute;
-            top: 25px;
-            right: 35px;
-            color: white;
-            font-size: 40px;
+            top: 20px;
+            right: 40px;
+            color: #FFD700;
+            font-size: 50px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-            background: rgba(165, 0, 68, 0.8);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #ffd700;
+            transition: color 0.3s;
         }
 
-        .fechar-modal:hover {
-            color: #ffd700;
-            transform: scale(1.1);
-            background: #a50044;
+        .modal-close:hover {
+            color: #A50044;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* RODAPÉ */
-        .rodape-galeria {
-            margin-top: 35px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 2px solid #ffd700;
-            color: #004d98;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .rodape-galeria p {
-            margin: 5px 0;
-        }
-
-        /* RESPONSIVIDADE */
-        @media (max-width: 800px) {
-            .galeria-grade {
-                gap: 15px;
-            }
-            .galeria-item img {
-                height: 180px;
-            }
-            .legenda h3 {
-                font-size: 1rem;
-            }
-            .galeria-titulo h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .galeria-grade {
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .gallery {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
             }
         }
 
-        @media (max-width: 480px) {
-            .galeria-grade {
+        @media (max-width: 500px) {
+            .gallery {
                 grid-template-columns: 1fr;
             }
-            .galeria-container {
-                padding: 20px;
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="galeria-container">
-        <!-- TÍTULO DA GALERIA COM ESCUDO DO BARÇA -->
-        <div class="galeria-titulo">
-            <h1>
-                <span>🔴🔵</span>
-                FC BARCELONA
-                <span>🔵🔴</span>
-            </h1>
-            <p>📸 Galeria de fotos - 2 linhas | 3 colunas | 6 momentos inesquecíveis</p>
-            <p style="font-size: 0.9rem; margin-top: 5px;">✨ Clique em qualquer foto para ampliar ✨</p>
-        </div>
-
-        <!-- GRADE DA GALERIA: 2 LINHAS COM 3 FOTOS CADA (TOTAL 6 ITENS) -->
-        <div class="galeria-grade">
-            <!-- PRIMEIRA LINHA - 3 FOTOS -->
-            <div class="galeria-item" onclick="abrirModal('img1', '🏆 Camp Nou - Templo do Futebol', 'Estádio icônico do Barcelona, o maior da Europa com capacidade para 99.354 torcedores.')">
-                <img src="https://www.estadios.net/estadio-do-barcelona/" alt="Camp Nou - Estádio do Barcelona">
-                <div class="legenda">
-                    <h3>🏟️ Camp Nou</h3>
-                    <p>Estadio</p>
-                </div>
+    <div class="container">
+        <h1>⚽ Lendas do Barcelona ⚽</h1>
+        
+        <div class="gallery">
+            <!-- Linha 1 -->
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Lionel_Messi_20180626.jpg" alt="Lionel Messi">
+                <div class="overlay">Lionel Messi</div>
+                <div class="player-number">10</div>
             </div>
-
-            <div class="galeria-item" onclick="abrirModal('img2', '⭐ Lionel Messi - O Maior de Todos', 'O craque argentino que fez história no Barça com 672 gols e 35 títulos.')">
-                <img src="https://www.goal.com/br/listas/lionel-messi-pode-jogar-meio-campo-volta-barcelona/bltf311530a86bf9af7" alt="Lionel Messi">
-                <div class="legenda">
-                    <h3>🐐 Lionel Messi</h3>
-                    <p>Lenda do Barça</p>
-                </div>
+            
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ronaldinho_Gaucho_%28cropped%29.jpg" alt="Ronaldinho Gaúcho">
+                <div class="overlay">Ronaldinho Gaúcho</div>
+                <div class="player-number">10</div>
             </div>
-
-            <div class="galeria-item" onclick="abrirModal('img3', '🏆 UEFA Champions League 2015', 'O Barcelona conquistou a sua quinta Champions League ao vencer a Juventus por 3 a 1 em Berlim.')">
-                <img src="https://brasil.elpais.com/brasil/2015/06/06/deportes/1433606172_299669.html">
-                <div class="legenda">
-                    <h3>🏆 Champions 2015</h3>
-                    <p>Quinta Orelhuda</p>
-                </div>
+            
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Xavi_2012.jpg" alt="Xavi Hernández">
+                <div class="overlay">Xavi Hernández</div>
+                <div class="player-number">6</div>
             </div>
-
-            <!-- SEGUNDA LINHA - 3 FOTOS -->
-            <div class="galeria-item" onclick="abrirModal('img4', '💙❤️ La Masia - Celeiro de Talentos', 'A famosa academia do Barcelona que revelou Messi, Xavi, Iniesta, e muitos outros craques.')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/La_Masia_2016.jpg/800px-La_Masia_2016.jpg" alt="La Masia - Academia do Barcelona">
-                <div class="legenda">
-                    <h3>🏠 La Masia</h3>
-                    <p>Celeiro de Craques</p>
-                </div>
+            
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Andr%C3%A9s_Iniesta_2017.jpg" alt="Andrés Iniesta">
+                <div class="overlay">Andrés Iniesta</div>
+                <div class="player-number">8</div>
             </div>
-
-            <div class="galeria-item" onclick="abrirModal('img5', '🔵🔴 El Clásico - A Maior Rivalidade', 'O confronto épico entre Barcelona e Real Madrid, o maior clássico do futebol mundial.')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/El_Clásico_2017.jpg/800px-El_Clásico_2017.jpg" alt="El Clásico - Barcelona vs Real Madrid">
-                <div class="legenda">
-                    <h3>⚔️ El Clásico</h3>
-                    <p>Rivalidade Épica</p>
-                </div>
+            
+            <!-- Linha 2 -->
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Carles_Puyol_2012.jpg" alt="Carles Puyol">
+                <div class="overlay">Carles Puyol</div>
+                <div class="player-number">5</div>
             </div>
-
-            <div class="galeria-item" onclick="abrirModal('img6', '🌟 Geração de Ouro - Xavi, Iniesta e Busquets', 'O lendário meio-campo que dominou o futebol mundial com o estilo de jogo "tiki-taka".')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Xavi_and_Iniesta_2012.jpg/800px-Xavi_and_Iniesta_2012.jpg" alt="Xavi e Iniesta">
-                <div class="legenda">
-                    <h3>🎯 Xavi & Iniesta</h3>
-                    <p>Maestros do Meio-campo</p>
-                </div>
+            
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Neymar_2014.jpg" alt="Neymar Jr">
+                <div class="overlay">Neymar Jr</div>
+                <div class="player-number">11</div>
             </div>
-        </div>
-
-        <!-- RODAPÉ DA GALERIA -->
-        <div class="rodape-galeria">
-            <p>🔴🔵 <strong>Més que un club</strong> 🔵🔴</p>
-            <p>© 2025 Galeria FC Barcelona - 6 momentos que marcaram a história do clube</p>
-            <p style="font-size: 0.8rem;">⚽ 2 linhas | 3 colunas | Total de 6 fotos 📸</p>
+            
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Luis_Su%C3%A1rez_2018.jpg" alt="Luis Suárez">
+                <div class="overlay">Luis Suárez</div>
+                <div class="player-number">9</div>
+            </div>
+            
+            <div class="gallery-item" onclick="openModal(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Pedri_2021.jpg" alt="Pedri">
+                <div class="overlay">Pedri González</div>
+                <div class="player-number">8</div>
+            </div>
         </div>
     </div>
 
-    <!-- MODAL PARA EXIBIR IMAGEM AMPLIADA -->
-    <div id="modal" class="modal" onclick="fecharModal()">
-        <div class="fechar-modal" onclick="fecharModal()">&times;</div>
-        <div class="modal-conteudo" onclick="event.stopPropagation()">
-            <img id="modalImg" src="" alt="Imagem ampliada">
-            <div class="modal-legenda">
-                <h3 id="modalTitulo"></h3>
-                <p id="modalDescricao"></p>
-            </div>
-        </div>
+    <!-- Modal para ampliar imagem -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <script>
-        // Função para abrir o modal com a imagem ampliada
-        function abrirModal(imgId, titulo, descricao) {
-            const modal = document.getElementById('modal');
-            const modalImg = document.getElementById('modalImg');
-            const modalTitulo = document.getElementById('modalTitulo');
-            const modalDescricao = document.getElementById('modalDescricao');
+        function openModal(element) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const img = element.querySelector('img');
             
-            // URLs das imagens em alta resolução
-            let imagemSrc = '';
-            if (imgId === 'img1') imagemSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Camp_Nou_inside.jpg/1200px-Camp_Nou_inside.jpg';
-            else if (imgId === 'img2') imagemSrc = 'https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=1200';
-            else if (imgId === 'img3') imagemSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FC_Barcelona_2015_UCL_celebration.jpg/1200px-FC_Barcelona_2015_UCL_celebration.jpg';
-            else if (imgId === 'img4') imagemSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/La_Masia_2016.jpg/1200px-La_Masia_2016.jpg';
-            else if (imgId === 'img5') imagemSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/El_Clásico_2017.jpg/1200px-El_Clásico_2017.jpg';
-            else if (imgId === 'img6') imagemSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Xavi_and_Iniesta_2012.jpg/1200px-Xavi_and_Iniesta_2012.jpg';
-            
-            modalImg.src = imagemSrc;
-            modalTitulo.textContent = titulo;
-            modalDescricao.textContent = descricao;
             modal.style.display = 'flex';
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            
+            // Impedir que o clique se propague para o modal
+            event.stopPropagation();
         }
         
-        // Função para fechar o modal
-        function fecharModal() {
-            const modal = document.getElementById('modal');
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
             modal.style.display = 'none';
         }
         
-        // Fechar modal com tecla ESC
+        // Fechar modal com a tecla ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                fecharModal();
+                closeModal();
             }
         });
     </script>
